@@ -1,7 +1,4 @@
 package com.example.project.controller;
-
-
-
 import com.example.project.entity.BlogPost;
 import com.example.project.service.BlogPostService;
 import jakarta.validation.Valid;

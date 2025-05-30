@@ -28,8 +28,6 @@ public class BlogPost {
     @Column(length = 100)
     private String categoria;
 
-    // --- Getters y Setters ---
-
     public Long getId() {
         return id;
     }

@@ -19,7 +19,7 @@
     <tr th:each="post : ${posts}">
         <td><a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.titulo}"></a></td>
         <td th:text="${post.autor}">Autor</td>
-        <td th:text="${#dates.format(post.fechaPublicacion, 'dd/MM/yyyy HH:mm')}">Fecha</td>
+<!--<td th:text="${#dates.format(post.fechaPublicacion, 'dd/MM/yyyy HH:mm')}">Fecha</td>-->
         <td>
             <a th:href="@{/posts/{id}(id=${post.id})}">Ver Completo</a> |
             <a th:href="@{/posts/editar/{id}(id=${post.id})}">Editar</a> |
