@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Listado de Entradas</title>
+</head>
+<body>
+<h1>Entradas del Blog</h1>
+<a href="/posts/nuevo">Crear Nueva Entrada</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Fecha de Publicación</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="post : ${posts}">
+        <td><a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.titulo}"></a></td>
+        <td th:text="${post.autor}">Autor</td>
+        <td th:text="${#dates.format(post.fechaPublicacion, 'dd/MM/yyyy HH:mm')}">Fecha</td>
+        <td>
+            <a th:href="@{/posts/{id}(id=${post.id})}">Ver Completo</a> |
+            <a th:href="@{/posts/editar/{id}(id=${post.id})}">Editar</a> |
+            <form th:action="@{/posts/eliminar/{id}(id=${post.id})}" method="post" style="display:inline"
+                  onsubmit="return confirm('¿Estás seguro de eliminar esta entrada?');">
+                <button type="submit">Eliminar</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

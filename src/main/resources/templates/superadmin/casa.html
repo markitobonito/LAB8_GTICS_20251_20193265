@@ -92,7 +92,7 @@
               <a th:href="@{/superadmin/home}" class="app-brand-link">
                     <span class="app-brand-logo demo">
                         </span>
-                <img src="https://i.ibb.co/J8Q4NtV/San-Miguel.jpg" style="width: 100px" alt="Logo San Miguel">
+                <img src="https://i.ibb.co/J8Q4NtV/San-Miguel.jpg" style="width: 100px" alt="Logo San Miguel"/>
                 <span class="app-brand-text demo menu-text fw-bold ms-2 ps-1">San Miguel</span>
               </a>
             </div>
@@ -123,10 +123,16 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
+
                       <a class="dropdown-item"> <div class="d-flex align-items-center">
                         <div class="flex-shrink-0 me-3">
-                          <div class="avatar">
-                            <img src="https://i.ibb.co/Gy3XsW4/307ce493-b254-4b2d-8ba4-d12c080d6651.jpg" alt class="w-px-40 h-auto rounded-circle">
+                          <div class="avatar avatar-online">
+                            <span class="avatar-initial rounded-circle bg-label-danger"
+                                  th:with="nombreInicial=${session.usuario.nombres != null and session.usuario.nombres.length() > 0 ? #strings.toUpperCase(#strings.substring(session.usuario.nombres, 0, 1)) : ''},
+               apellidoInicial=${session.usuario.apellidos != null and session.usuario.apellidos.length() > 0 ? #strings.toUpperCase(#strings.substring(session.usuario.apellidos, 0, 1)) : ''}"
+                                  th:text="${nombreInicial} + ${apellidoInicial}">
+    BS
+</span>
                           </div>
                         </div>
                         <div class="flex-grow-1">
@@ -447,7 +453,12 @@
               <td th:text="${usuario.rol.rol}"></td>
               <td th:text="${usuario.estado.estado}"></td>
               <td style="display:flex;justify-content: space-between">
-                <button type="button" style="background: white; border: 1px solid gray; border-radius: 4px;"><i class='bx bx-key'></i></button>
+                <form th:action="@{/superadmin/impersonate}" method="post" style="display: inline;">
+                  <input type="hidden" name="userId" th:value="${usuario.idUsuarios}" />
+                  <button type="submit" style="background: white; border: 1px solid gray; border-radius: 4px; cursor: pointer;" title="Entrar en la sesión de este usuario">
+                    <i class='bx bx-key'></i>
+                  </button>
+                </form>
                 <a th:href="@{'/superadmin/en?id='+${usuario.idUsuarios}}"><button type="button" style="background: white; border: 1px solid gray; border-radius: 4px;"><i class='bx bx-lock-open-alt'></i></button></a>
                 <a th:href="@{'/superadmin/de?id='+${usuario.idUsuarios}}"><button type="button" style="background: white; border: 1px solid gray; border-radius: 4px;"><i class='bx bx-lock'></i></button></a>
               </td>

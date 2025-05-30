@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Detalle de Entrada</title>
+</head>
+<body>
+<h1 th:text="${post.titulo}"></h1>
+<p><strong>Autor:</strong> <span th:text="${post.autor}">Autor</span></p>
+<p><strong>Fecha de Publicación:</strong> <span th:text="${#dates.format(post.fechaPublicacion, 'dd/MM/yyyy HH:mm')}"></span></p>
+<p><strong>Categoría:</strong> <span th:text="${post.categoria}"></span></p>
+<hr/>
+<div th:utext="${post.contenido}"></div>
+
+<p><a href="/posts">Volver al listado</a></p>
+</body>
+</html>
